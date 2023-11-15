@@ -18,21 +18,27 @@
                    <div class="col-sm-11">
                       <div class="form-group">
                          <label>First Name</label>
-                         <input type="text" class="form-control" name="first_name">
+                         <input type="text" class="form-control" name="first_name" value = "{{user.first_name}}">
                       </div>
                    </div>
                    <div class="col-sm-11">
                       <div class="form-group">
                          <label>last Name</label>
-                         <input type="text" class="form-control" name="last_name">
+                         <input type="text" class="form-control" name="last_name" value = "{{user.last_name}}">
                       </div>
                    </div>
                    <div class="col-sm-11">
                     <div class="form-group">
                        <label>Email</label>
-                       <input type="text" class="form-control" name="email" readonly>
+                       <input type="text" class="form-control" name="email" value = "{{user.email}}"readonly>
                     </div>
                  </div>
+                 <div class="col-sm-11">
+                  <div class="form-group">
+                     <label>Username</label>
+                     <input type="text" class="form-control" name="username" value = "{{user.username}}" readonly>
+                  </div>
+               </div>
                  <div class="col-sm-11">
                     <div class="form-group">
                        <label>Username</label>
@@ -56,3 +62,4 @@
  </div>
 
 {% endblock %}
+
