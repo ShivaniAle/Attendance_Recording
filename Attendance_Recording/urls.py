@@ -12,7 +12,7 @@ urlpatterns = [
     path('dologout', views.doLogout, name = 'logout'),
 
     # Profile Update
-    path('profile',views.PROFILE,name='profile'),
+    path('Profile',views.PROFILE,name='profile'),
 
     # This is hod panel url
     path('hod/home' ,hod_views.HOME,name='hod_home'),
