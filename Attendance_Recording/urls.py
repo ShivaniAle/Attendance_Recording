@@ -19,6 +19,8 @@ urlpatterns = [
     # This is hod panel url
     path('hod/home' ,hod_views.HOME,name='hod_home'),
     path('hod/Add/Student' ,hod_views.ADD_STUDENT,name='add_student'),
+    path('hod/View/Student', hod_views.VIEW_STUDENT, name= "view_student"),
+    path('hod/Edit/Student/<str:id>', hod_views.EDIT_STUDENT, name = "edit_student"),
     
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
