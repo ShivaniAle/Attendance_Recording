@@ -81,3 +81,67 @@ def EDIT_STUDENT(request,id):
 
     }
     return render(request, 'hod/edit_student.html',context)
+def UPDATE_STUDENT(request):
+    if request.method == "POST":
+        student_id = request.POST.get('student_id')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+        course_id = request.POST.get('course_id')
+        session_year_id = request.POST.get('session_year_id')
+
+        user = CustomUser.objects.get(id = student_id)
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        user.username = username
+        if password != None and password != "":
+            user.set_password(password)
+        user.save()
+        student = Student.objects.get(admin = student_id)
+        student.address = address
+        student.gender = gender
+
+        course = Course.objects.get(id = course_id)
+        student.course_id = course
+
+        session_year = Session_Year.objects.get(id = session_year_id)
+        student.session_year_id = session_year
+
+        student.save()
+        messages.success(request, 'Record Updated Successfully')
+        return redirect('view_student')
+
+
+
+
+    return render(request, 'hod/edit_student.html')
+def DELETE_STUDENT(request,admin):
+    student = CustomUser.objects.get(id = admin)
+    student.delete()
+    messages.success(request, "Record deleted Successfully ")
+
+
+    return redirect("view_student")
+def ADD_COURSE(request):
+    if request.method == "POST":
+        course_name = request.POST.get('course_name')
+        course = Course (
+            name = course_name,
+
+        )
+        course.save()
+        messages.success(request, "Course added successfully")
+        return redirect('add_course')
+
+    return render(request, 'hod/add_course.html')
+def VIEW_COURSE(request):
+    course = Course.objects.all()
+    context = {
+        'course' : course, 
+    }
+    return render(request, 'hod/view_course.html', context)
