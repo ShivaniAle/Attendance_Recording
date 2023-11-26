@@ -23,8 +23,21 @@ urlpatterns = [
     path('hod/Edit/Student/<str:id>', hod_views.EDIT_STUDENT, name = "edit_student"),
     path('hod/Update/Student' , hod_views.UPDATE_STUDENT, name='update_student'),
     path('hod/Delete/Student/<str:admin>', hod_views.DELETE_STUDENT, name = 'delete_student'),
+
+
+    path('hod/Add/Staff' ,hod_views.ADD_STAFF,name='add_staff'),
+    path('hod/View/Staff' ,hod_views.VIEW_STAFF,name='view_staff'),
+
+
+
+
+
+
     path('hod/Add/Course', hod_views.ADD_COURSE, name = 'add_course'),
     path('hod/View/Course', hod_views.VIEW_COURSE, name = 'view_course'),
+    path('hod/Edit/Course/<str:id>', hod_views.EDIT_COURSE, name = 'edit_course'),
+    path('hod/Update/Course', hod_views.UPDATE_COURSE, name = 'update_course'),
+    path('hod/Delete/Course/<str:id>',hod_views.DELETE_COURSE, name='delete_course'),
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -145,3 +145,36 @@ def VIEW_COURSE(request):
         'course' : course, 
     }
     return render(request, 'hod/view_course.html', context)
+
+def EDIT_COURSE(request,id):
+    course = Course.objects.get(id = id)
+
+    context = {
+         'course':course,
+     }
+    return render(request, 'hod/edit_course.html', context)
+
+def UPDATE_COURSE(request):
+    if request.method == "POST":
+        name = request.POST.get('name')
+        course_id = request.POST.get('course_id')
+
+        course = Course.objects.get(id = course_id)
+        course.name = name
+        course.save()
+        messages.success(request,'Course Are Successfully Updated')
+        return redirect('view_course')
+
+    return render(request, 'hod/edit_course.html')
+
+def DELETE_COURSE(request,id):
+    course = Course.objects.get(id = id)
+    course.delete()
+    messages.success(request,'Course are Successfully Deleted')
+    return redirect('view_course')
+
+def ADD_STAFF(request):
+    return render(request,'hod/add_staff.html')
+
+def VIEW_STAFF(request):
+    return render(request,'hod/view_staff.html')
