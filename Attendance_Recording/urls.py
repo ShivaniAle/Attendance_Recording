@@ -27,6 +27,9 @@ urlpatterns = [
 
     path('hod/Add/Staff' ,hod_views.ADD_STAFF,name='add_staff'),
     path('hod/View/Staff' ,hod_views.VIEW_STAFF,name='view_staff'),
+    path('hod/Edit/Staff/<str:id>', hod_views.EDIT_STAFF, name = 'edit_staff'),
+    path('hod/Update/Staff' , hod_views.UPDATE_STAFF, name = 'update_staff'),
+    path('hod/Delete/Staff/<str:admin>' , hod_views.DELETE_STAFF, name = 'delete_staff'),
 
 
 
