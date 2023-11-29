@@ -56,20 +56,20 @@ def ADD_STUDENT(request):
             return redirect('add_student')
 
             
-
-
     context = {
         'course': course,
         'session_year' : session_year,
          
     }
     return render(request,'hod/add_student.html',context)
+
 def VIEW_STUDENT(request):
     student = Student.objects.all()
     context = {
         'student' : student,
     }
     return render(request, 'hod/view_student.html',context)
+
 def EDIT_STUDENT(request,id):
     student = Student.objects.filter(id=id)
     course = Course.objects.all()
@@ -81,6 +81,7 @@ def EDIT_STUDENT(request,id):
 
     }
     return render(request, 'hod/edit_student.html',context)
+
 def UPDATE_STUDENT(request):
     if request.method == "POST":
         student_id = request.POST.get('student_id')
@@ -115,18 +116,15 @@ def UPDATE_STUDENT(request):
         student.save()
         messages.success(request, 'Record Updated Successfully')
         return redirect('view_student')
-
-
-
-
     return render(request, 'hod/edit_student.html')
+
+
 def DELETE_STUDENT(request,admin):
     student = CustomUser.objects.get(id = admin)
     student.delete()
     messages.success(request, "Record deleted Successfully ")
-
-
     return redirect("view_student")
+
 def ADD_COURSE(request):
     if request.method == "POST":
         course_name = request.POST.get('course_name')
@@ -175,7 +173,6 @@ def DELETE_COURSE(request,id):
 
 def ADD_STAFF(request):
     if request.method == "POST":
-        profile_pic = request.FILES.get('profile_pic')
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
@@ -215,3 +212,46 @@ def VIEW_STAFF(request):
      
 
     return render(request,'hod/view_staff.html')
+
+def EDIT_STAFF(request,id):
+    staff = Staff.objects.get(id = id)
+    context = {
+        'staff' : staff,
+    }
+    return render(request, 'hod/edit_staff.html',context)
+def UPDATE_STAFF(request):
+    if request.method == 'POST':
+        staff_id = request.POST.get('staff_id')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        address = request.POST.get('address')
+        gender = request.POST.get('gender')
+
+        user = CustomUser.objects.get(id = staff_id)
+        user.user_name = username
+        user.first_name = first_name
+        user.last_name = last_name
+        user.email = email
+        if password != None and password != "":
+            user.set_password(password)
+        
+        user.save()
+        staff = staff.objects.get(admin = staff_id)
+        staff. gender = gender
+        staff.address = address
+        staff.save()
+        messages.success(request, 'Staff is successfully updated')
+        return redirect('view_staff')
+
+
+    return render(request, 'hod/edit_staff.html')
+def DELETE_STAFF(request, admin):
+    staff = CustomUser.objects.get(id = admin)
+    staff.delete()
+    messages.success(request, "Record is successfully deleted")
+
+
+    return redirect('view_staff')
