@@ -188,7 +188,7 @@ def ADD_STAFF(request):
             messages.warning(request, 'Username is already taken !!')
             return redirect('add_staff')
         else:
-            user = CustomUser(first_name = first_name, last_name= last_name, email = email, username = user_name,  profile_pic= profile_pic, user_type = 2)
+            user = CustomUser(first_name = first_name, last_name= last_name, email = email, user_name = user_name,  profile_pic= profile_pic, user_type = 2)
             user.set_password(password)
             user.save()
 
