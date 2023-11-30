@@ -4,10 +4,10 @@
     <div class="page-header">
        <div class="row align-items-center">
           <div class="col">
-             <h3 class="page-title">Students</h3>
+             <h3 class="page-title">Subject</h3>
              <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item active">Students</li>
+                <li class="breadcrumb-item active">Subject</li>
              </ul>
           </div>
          
@@ -27,19 +27,22 @@
                       <thead>
                          <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            
+                            <th>Subject Name</th>
+                            <th>Course</th>
+                            <th>Staff</th>
                             <th>Created_at</th>
                             <th>Updated_at</th>
                             <th class="text-right">Action</th>
                          </tr>
                       </thead>
                       <tbody>
-                        {% for i in course %}
+                        {% for i in subject %}
                          <tr>
                             <td>{{i.id}}</td>
-                            
-                            <td>{{i.name}}</td>
+                            <td>{{i.subject.name}}</td>
+                            <td>{{i.subject.course}}</td>
+                            <td>{{i.subject.staff.admin.first_name}}&nbsp;{{i.subject.staff.admin.last_name}}</td>
+
                             <td>{{i.created_at}}</td>
                             <td>{{i.updated_at}}</td>
                             <td class="text-right">

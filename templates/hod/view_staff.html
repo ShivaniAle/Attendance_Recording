@@ -4,16 +4,16 @@
     <div class="page-header">
        <div class="row align-items-center">
           <div class="col">
-             <h3 class="page-title">Students</h3>
+             <h3 class="page-title">Staff</h3>
              <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item active">Students</li>
+                <li class="breadcrumb-item active">Staff</li>
              </ul>
           </div>
          
           <div class="col-auto text-right float-right ml-auto">
              <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-             <a href="add-student.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+             <a href="add_staff.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
           </div>
        </div>
     </div>
@@ -23,7 +23,7 @@
           <div class="card card-table">
              <div class="card-body">
                 <div class="table-responsive">
-                   <table class="table table-hover table-center mb-0 datatable">
+                   <table id="table_id" class="table table-hover table-center mb-0">
                       <thead>
                          <tr>
                             <th>ID</th>
@@ -35,26 +35,25 @@
                             <th>Created_at</th>
                             <th>Updated_at</th>
                             <th class="text-right">Action</th>
-                         </tr>
-                      </thead>
+                           </tr>
+                        </thead>
                       <tbody>
-                        {% for i in student %}
+                        {% for i in staff %}
                          <tr>
-                            <td>{{i.id}}</td>
-                            <td>
-                               <h2 class="table-avatar">
-                                  
-                                  <a href="student-details.html">{{i.admin.first_name}}&nbsp;{{i.admin.last_name}}</a>
-                               </h2>
-                            </td>
-                            <td>{{i.admin.email}}</td>
+                           <td>{{i.id}}</td>
+                              <td>
+                                 <h2 class="table-avatar">
+                                    <a href="student-details.html">{{i.staff.admin.first_name}}&nbsp;{{i.staff.admin.last_name}}</a>
+                                 </h2>
+                              </td>
+                           <td>{{i.admin.email}}</td>
                            
-                            <td>{{i.gender}}</td>
-                            <td>{{i.address}}</td>
+                           <td>{{i.gender}}</td>
+                           <td>{{i.address}}</td>
 
-                            <td>{{i.created_at}}</td>
-                            <td>{{i.updated_at}}</td>
-                            <td class="text-right">
+                           <td>{{i.created_at}}</td>
+                           <td>{{i.updated_at}}</td>
+                           <td class="text-right">
                                <div class="actions">
                                   <a href="{% url 'edit_staff' i.id %}" class="btn btn-sm bg-success-light mr-2">
                                   <i class="fas fa-pen"></i>

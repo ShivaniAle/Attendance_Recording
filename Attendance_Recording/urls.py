@@ -33,14 +33,16 @@ urlpatterns = [
 
 
 
-
-
-
     path('hod/Add/Course', hod_views.ADD_COURSE, name = 'add_course'),
     path('hod/View/Course', hod_views.VIEW_COURSE, name = 'view_course'),
     path('hod/Edit/Course/<str:id>', hod_views.EDIT_COURSE, name = 'edit_course'),
     path('hod/Update/Course', hod_views.UPDATE_COURSE, name = 'update_course'),
     path('hod/Delete/Course/<str:id>',hod_views.DELETE_COURSE, name='delete_course'),
+
+
+    path('hod/Add/Subject', hod_views.ADD_SUBJECT, name = 'add_subject'),
+    path('hod/View/Subject', hod_views.VIEW_SUBJECT, name = 'view_subject'),
+    
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
