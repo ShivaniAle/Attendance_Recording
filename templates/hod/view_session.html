@@ -4,16 +4,16 @@
     <div class="page-header">
        <div class="row align-items-center">
           <div class="col">
-             <h3 class="page-title">Staff</h3>
+             <h3 class="page-title">Session</h3>
              <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item active">Staff</li>
+                <li class="breadcrumb-item active">Session</li>
              </ul>
           </div>
          
           <div class="col-auto text-right float-right ml-auto">
              <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-             <a href="add_staff.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+             <a href="add-student.html" class="btn btn-primary"><i class="fas fa-plus"></i></a>
           </div>
        </div>
     </div>
@@ -27,37 +27,25 @@
                       <thead>
                          <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Gender</th>
-                            <th>Address</th>
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Session Year Start</th>
+                            <th>Session Year End</th>
+                
                             <th class="text-right">Action</th>
-                           </tr>
-                        </thead>
+                         </tr>
+                      </thead>
                       <tbody>
-                        {% for i in staff %}
+                        {% for i in session %}
                          <tr>
-                           <td>{{i.id}}</td>
-                              <td>
-                                 <h2 class="table-avatar">
-                                    <a href="student-details.html">{{i.staff.admin.first_name}}&nbsp;{{i.staff.admin.last_name}}</a>
-                                 </h2>
-                              </td>
-                           <td>{{i.admin.email}}</td>
-                           
-                           <td>{{i.gender}}</td>
-                           <td>{{i.address}}</td>
-
-                           <td>{{i.created_at}}</td>
-                           <td>{{i.updated_at}}</td>
-                           <td class="text-right">
+                            <td>{{i.id}}</td>
+                            <td>{{i.session_start}}</td>
+                            <td>{{i.session_end}}</td>
+                            
+                            <td class="text-right">
                                <div class="actions">
-                                  <a href="{% url 'edit_staff' i.id %}" class="btn btn-sm bg-success-light mr-2">
+                                  <a href="{% url 'edit_session' i.id %}" class="btn btn-sm bg-success-light mr-2">
                                   <i class="fas fa-pen"></i>
                                   </a>
-                                  <a href="{% url 'delete_staff' i.admin.id %}" class="btn btn-sm bg-danger-light">
+                                  <a href="{% url 'delete_subject' i.id %}" class="btn btn-sm bg-danger-light">
                                   <i class="fas fa-trash"></i>
                                   </a>
                                </div>

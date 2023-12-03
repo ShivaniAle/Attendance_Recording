@@ -221,7 +221,7 @@ def VIEW_STAFF(request):
         'staff' : staff,
     }
      
-    return render(request,'hod/view_staff.html')
+    return render(request,'hod/view_staff.html',context)
 
 @login_required(login_url='/')
 def EDIT_STAFF(request,id):
@@ -306,4 +306,81 @@ def VIEW_SUBJECT(request):
 
     }
 
-    return render(request, 'hod/view_subject.html')
+    return render(request, 'hod/view_subject.html',context)
+
+@login_required(login_url='/')
+def EDIT_SUBJECT(request,id):
+    subject = Subject.objects.get(id = id)
+    course = Course.objects.all()
+    staff = Staff.objects.all()
+
+    context = {
+        'subject' : subject,
+        'course' : course,
+        'staff' : staff,
+
+    }
+    return render(request,'hod/edit_subject.html',context)
+
+@login_required(login_url='/')
+def UPDATE_SUBJECT(request):
+    if request.method == "POST":
+        subject_id = request.POST.get('subject_id')
+        subject_name = request.POST.get('subject_name')
+        course_id = request.POST.get('course_id')
+        staff_id = request.POST.get('staff_id')
+        course = Course.objects.get(id = course_id)
+        staff = Staff.objects.get(id = staff_id)
+
+        subject = Subject(
+            id = subject_id,
+            name = subject_name,
+            course = course,
+            staff = staff,
+
+        )
+        subject.save()
+        messages.success(request,"Subject is successfully updated" )
+    return redirect('view_subject')
+
+
+def DELETE_SUBJECT(request, id):
+    subject = Subject.objects.filter(id = id)
+    subject.delete()
+    messages.success(request, "Subject is successfully deleted")
+    return redirect('view_subject')
+
+def ADD_SESSION(request):
+    if request.method == "POST":
+        session_year_start = request.POST.get("session_year_start")
+        session_year_end = request.POST.get("session_year_end")
+ 
+        session = Session_Year(
+            session_start = session_year_start,
+            session_end = session_year_end,
+
+
+        )
+        session.save()
+        messages.success(request,"Session is successfully created")
+        return redirect("add_session")
+
+    return render(request, 'hod/add_session.html')
+
+def VIEW_SESSION(request):
+    session = Session_Year.objects.all()
+    context = {
+        'session': session,
+
+    }
+
+    return render(request, 'hod/view_session.html',context)
+def EDIT_SESSION(request,id):
+
+    session = Session_Year.objects.get(id = id)
+    
+    context = {
+        'session' : session,
+    
+    }
+    return render(request,'hod/edit_session.html',context)
