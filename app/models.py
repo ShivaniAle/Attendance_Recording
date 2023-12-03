@@ -32,7 +32,7 @@ class Student(models.Model):
     address = models.TextField()
     gender = models.CharField(max_length=100)
     course_id = models.ForeignKey(Course,on_delete=models.DO_NOTHING)
-    session_year_id = models.ForeignKey(Session_Year,on_delete=models.DO_NOTHING)
+    session_year_id = models.ForeignKey(Session_Year,on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
