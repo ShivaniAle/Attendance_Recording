@@ -6,7 +6,18 @@ from django.contrib import messages
 
 @login_required(login_url='/')
 def HOME(request):
-    return render(request,'hod/home.html')
+    student_count = Student.objects.all().count()
+    staff_count = Staff.objects.all().count()
+    course_count = Course.objects.all().count()
+    subject_count = Subject.objects.all().count()
+    
+    context = {
+        'student_count': student_count,
+        'staff_count': staff_count,
+        'course_count': course_count,
+        'subject_count': subject_count,
+    }
+    return render(request,'hod/home.html', context)
 
 @login_required(login_url='/')
 def ADD_STUDENT(request):
@@ -402,3 +413,4 @@ def DELETE_SESSION(request, id):
     session.delete()
     messages.success(request,"Session Are Successfully Deleted...!")
     return redirect('view_session')
+
