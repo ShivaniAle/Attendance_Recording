@@ -3,10 +3,10 @@
 <div class="header">
    <div class="header-left">
       <a href="index.html" class="logo">
-      <img src="CDN_URL_TO_LOGO" alt="Logo">
+      <img src="{% static 'assets/img/logo_unh.png' %}" alt="Logo">
       </a>
       <a href="index.html" class="logo logo-small">
-      <img src="CDN_URL_TO_LOGO_SMALL" alt="Logo" width="30" height="30">
+      <img src="{% static 'assets/img/logo_unh.png' %}" alt="Logo" width="30" height="30">
       </a>
    </div>
    <a href="javascript:void(0);" id="toggle_btn">
@@ -21,29 +21,16 @@
    <ul class="nav user-menu">
       <li class="nav-item dropdown noti-dropdown">
          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-         <i class="far fa-bell"></i> <span class="badge badge-pill">3</span>
+         
          </a>
-         <div class="dropdown-menu notifications">
-            <div class="topnav-dropdown-header">
-               <span class="notification-title">Notifications</span>
-               <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-            </div>
-            <div class="noti-content">
-               <ul class="notification-list">
-                  <!-- ... Notification items ... -->
-               </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-               <a href="#">View all Notifications</a>
-            </div>
-         </div>
+         
       </li>
       <li class="nav-item dropdown has-arrow">
          <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
          {% if user.profile_pic == "" %}
-           <span class="user-img"><img class="rounded-circle" src="CDN_URL_TO_NOIMG" width="31" alt="Ryan Taylor"></span>
+           <span class="user-img"><img class="rounded-circle" src="{{ user.profile_pic }}" width="31" ></span>
          {% else %}
-           <span class="user-img"><img class="rounded-circle" src="{{ user.profile_pic }}" width="31" alt="Ryan Taylor"></span>
+           <span class="user-img"><img class="rounded-circle" src="{{ user.profile_pic }}" width="31" ></span>
          {% endif %}
         </a>
          <div class="dropdown-menu">
