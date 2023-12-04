@@ -37,7 +37,7 @@
             <div class="user-header">
               <div class="avatar avatar-sm">
                  {% if user.profile_pic == "" %}
-                 <img src="CDN_URL_TO_NOIMG" alt="User Image" class="avatar-img rounded-circle">
+                 <img src="{{ user.profile_pic }}" alt="User Image" class="avatar-img rounded-circle">
                  {% else %}
                  <img src="{{ user.profile_pic }}" alt="User Image" class="avatar-img rounded-circle">
                  {% endif %} 
@@ -54,8 +54,7 @@
                </div>
             </div>
             <a class="dropdown-item" href="{% url 'profile' %}">My Profile</a>
-            <a class="dropdown-item" href="inbox.html">Inbox</a>
-            <a class="dropdown-item" href="login.html">Logout</a>
+            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
          </div>
       </li>
    </ul>
