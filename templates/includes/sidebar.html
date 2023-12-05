@@ -2,6 +2,8 @@
 <div class="sidebar" id="sidebar">
    <div class="sidebar-inner slimscroll">
       <div id="sidebar-menu" class="sidebar-menu">
+         {% if user.user_type == '1' %}
+
          <ul>
             <li class="menu-title">
                <span>Main Menu</span>
@@ -50,6 +52,49 @@
               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
            </li>
          </ul>
+         {% elif user.user_type == '2'  %}
+         <ul>
+            <li class="menu-title">
+               <span>Main Menu</span>
+            </li>
+            <li class = "{% active_link 'staff_home' 'active' %}">
+              <a href="{% url 'hod_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+           </li>
+           <li class = "{% active_link '' 'active' %}">
+            <a href="{% url 'staff_take_attendance' %}"><i class="fas fa-calendar-alt"></i> <span>Take Attendance</span></a>
+           </li>
+           <li class = "{% active_link '' 'active' %}">
+            <a href="{% url 'staff_view_attendance' %}"><i class="fas fa-calendar-alt"></i> <span>View/Update Attendance</span></a>
+           </li>
+           <li class = "{% active_link '' 'active' %}">
+            <a href="{% url 'hod_home' %}"><i class="fas fa-poll-h"></i> <span>Add Result</span></a>
+           </li>
+           <li>
+            <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+           </li>
+         </ul>
+         {% else %}
+         <ul>
+            <li class="menu-title">
+               <span>Main Menu</span>
+            </li>
+            <li class = "{% active_link 'student_home' 'active' %}">
+              <a href="{% url 'student_home' %}"><i class="fas fa-holly-berry"></i> <span>Dashboard</span></a>
+            </li>
+            <li class ="">
+                 <a href=""><i class="fa fas fa-poll-h" aria-hidden="true"></i><span>View Result</span></a> 
+            </li>
+            <li class = "">
+               <a href="{% url 'hod_home' %}"><i class="fas fa-calendar-alt"></i> <span>View Attendance</span></a>
+              </li>
+            <li class ="">
+               <a href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+          </li>
+          
+
+         </ul>
+
+         {% endif %}
       </div>
    </div>
 </div>

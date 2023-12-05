@@ -58,3 +58,23 @@ class Subject(models.Model):
 
     def __str__(self):
         return self.name
+class Attendance(models.Model):
+    subject_id = models.ForeignKey(Subject,on_delete=models.DO_NOTHING)
+    attendance_data = models.DateField()
+    session_year_id = models.ForeignKey(Session_Year,on_delete=models.DO_NOTHING)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return self.subject_id.name
+
+class Attendance_Report(models.Model):
+    student_id = models.ForeignKey(Student,on_delete=models.DO_NOTHING)
+    attendance_id = models.ForeignKey(Attendance,on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return self.student_id.admin.first_name
+    
+
