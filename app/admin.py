@@ -11,3 +11,6 @@ admin.site.register(Session_Year)
 admin.site.register(Student)
 admin.site.register(Staff)
 admin.site.register(Subject)
+admin.site.register(Attendance)
+admin.site.register(Attendance_Report)
+

@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .import views, hod_views
+from . import views, hod_views, Student_Views, Staff_Views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('base/', views.BASE, name = 'base'),
@@ -51,6 +52,15 @@ urlpatterns = [
     path('hod/Edit/Session/<str:id>', hod_views.EDIT_SESSION, name = 'edit_session'),
     path('hod/Update/Session', hod_views.UPDATE_SESSION, name = 'update_session'),
     path('hod/Delete/Session/<str:id>',hod_views.DELETE_SESSION, name='delete_session'),
+
+    path('staff/home', Staff_Views.HOME,name = 'staff_home'),
+    path('staff/Take_Attendance', Staff_Views.STAFF_TAKE_ATTENDANCE, name = 'staff_take_attendance'),
+    path('staff/Save_Attendance', Staff_Views.STAFF_SAVE_ATTENDANCE , name = 'staff_save_attendance'),
+    path('staff/View_Attendance', Staff_Views.STAFF_VIEW_ATTENDANCE , name = 'staff_view_attendance'),
+
+
+
+    path('student/home', Student_Views.HOME,name = 'student_home'),
     
 
 
