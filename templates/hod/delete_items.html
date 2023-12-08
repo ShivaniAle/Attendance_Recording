@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="" id="deleteForm">
+        {% csrf_token %}
+        <h1>Are you sure you want to delete</h1><br>
+        <input class="btn btn-danger" type="submit" value="Yes"/>
+        <button type="button" class="btn btn-primary" onclick="cancelDelete()">Cancel</button>
+    </form>
+
+    <script>
+        function cancelDelete() {
+            // Redirect to the appropriate URL for cancelling (in this case, /hod/View/Student)
+            window.location.href = '/hod/View/Student';
+        }
+
+        document.getElementById('deleteForm').addEventListener('submit', function (event) {
+            // Show confirmation dialog before submitting the form
+            var confirmDelete = confirm("Are you sure you want to delete?");
+            if (!confirmDelete) {
+                event.preventDefault(); // Cancel the form submission
+            }
+        });
+    </script>
+{% endblock %}

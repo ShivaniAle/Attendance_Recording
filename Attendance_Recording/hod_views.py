@@ -132,12 +132,23 @@ def UPDATE_STUDENT(request):
         return redirect('view_student')
     return render(request, 'hod/edit_student.html')
 
+
 @login_required(login_url='/')
-def DELETE_STUDENT(request,admin):
-    student = CustomUser.objects.get(id = admin)
-    student.delete()
-    messages.success(request, "Record deleted Successfully ")
-    return redirect("view_student")
+def DELETE_STUDENT(request, admin):
+    user = CustomUser.objects.get(id=admin)
+
+    if request.method == "POST":
+        student = Student.objects.get(admin=user)
+        student.delete()
+        user.delete()
+        messages.success(request, "Record deleted Successfully ")
+        return redirect('view_student')
+
+    context = {
+        'user': user,
+    }
+    return render(request, "hod/delete_items.html", context)
+
 
 @login_required(login_url='/')
 def ADD_COURSE(request):
