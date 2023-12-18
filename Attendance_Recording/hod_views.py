@@ -2,9 +2,11 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from app.models import Course, Session_Year, CustomUser, Student, Staff, Subject
 from django.contrib import messages
+from app.custom_time_of_day_middleware import HODTimeOfDayRestrictionMiddleware
 
 
 @login_required(login_url='/')
+
 def HOME(request):
     student_count = Student.objects.all().count()
     staff_count = Staff.objects.all().count()
@@ -132,12 +134,23 @@ def UPDATE_STUDENT(request):
         return redirect('view_student')
     return render(request, 'hod/edit_student.html')
 
+
 @login_required(login_url='/')
-def DELETE_STUDENT(request,admin):
-    student = CustomUser.objects.get(id = admin)
-    student.delete()
-    messages.success(request, "Record deleted Successfully ")
-    return redirect("view_student")
+def DELETE_STUDENT(request, admin):
+    user = CustomUser.objects.get(id=admin)
+
+    if request.method == "POST":
+        student = Student.objects.get(admin=user)
+        student.delete()
+        user.delete()
+        messages.success(request, "Record deleted Successfully ")
+        return redirect('view_student')
+
+    context = {
+        'user': user,
+    }
+    return render(request, "hod/delete_items.html", context)
+
 
 @login_required(login_url='/')
 def ADD_COURSE(request):

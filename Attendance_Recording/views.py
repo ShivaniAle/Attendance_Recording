@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect,HttpResponse
-from app.EmailBackEnd import EmailBackEnd
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from app.models import CustomUser
+from app.EmailBackEnd import EmailBackEnd
+from app.custom_time_of_day_middleware import HODTimeOfDayRestrictionMiddleware
 
 def BASE(request):
     return render(request, 'base.html')
 def LOGIN(request):
     return render(request, 'login.html')
+
+
 def doLogin(request):
     if request.method == "POST":
        user = EmailBackEnd.authenticate(request,
@@ -35,6 +38,7 @@ def doLogout(request):
     return redirect('login')
 
 @login_required(login_url='/')
+
 def PROFILE(request):
     user = CustomUser.objects.get(id = request.user.id)
     context = {
@@ -67,4 +71,3 @@ def PROFILE_UPDATE(request):
         except:
             messages.error(request,'Failed To Update Your Profile')
     return render(request,'profile.html')
-	
